@@ -11,6 +11,7 @@ var tcDefaults = {
   rewindKeyCode: 90,    // default: Z
   advanceKeyCode: 88,   // default: X
   displayKeyCode: 86,   // default: V
+  addSkipKeyCode: 65,   // default: A
   rememberSpeed: false, // default: false
   startHidden: false,   // default: false
   blacklist: `
@@ -96,6 +97,7 @@ function save_options() {
   var advanceTime   = document.getElementById('advanceTime').value;
   var fastSpeed     = document.getElementById('fastSpeed').value;
   var resetKeyCode  = document.getElementById('resetKeyInput').keyCode;
+  var addSkipKeyCode  = document.getElementById('addSkipKeyCode').keyCode;
   var rewindKeyCode = document.getElementById('rewindKeyInput').keyCode;
   var advanceKeyCode = document.getElementById('advanceKeyInput').keyCode;
   var slowerKeyCode = document.getElementById('slowerKeyInput').keyCode;
@@ -111,6 +113,7 @@ function save_options() {
   advanceTime   = isNaN(advanceTime) ? tcDefaults.advanceTime : Number(advanceTime);
   fastSpeed     = isNaN(fastSpeed) ? tcDefaults.fastSpeed : Number(fastSpeed);
   resetKeyCode  = isNaN(resetKeyCode) ? tcDefaults.resetKeyCode : resetKeyCode;
+  addSkipKeyCode  = isNaN(addSkipKeyCode) ? tcDefaults.addSkipKeyCode : addSkipKeyCode;
   rewindKeyCode = isNaN(rewindKeyCode) ? tcDefaults.rewindKeyCode : rewindKeyCode;
   advanceKeyCode = isNaN(advanceKeyCode) ? tcDefaults.advanceKeyCode : advanceKeyCode;
   slowerKeyCode = isNaN(slowerKeyCode) ? tcDefaults.slowerKeyCode : slowerKeyCode;
@@ -124,6 +127,7 @@ function save_options() {
     advanceTime:    advanceTime,
     fastSpeed:      fastSpeed,
     resetKeyCode:   resetKeyCode,
+    addSkipKeyCode:   addSkipKeyCode,
     rewindKeyCode:  rewindKeyCode,
     advanceKeyCode: advanceKeyCode,
     slowerKeyCode:  slowerKeyCode,
@@ -151,6 +155,7 @@ function restore_options() {
     document.getElementById('advanceTime').value = storage.advanceTime;
     document.getElementById('fastSpeed').value = storage.fastSpeed;
     updateShortcutInputText('resetKeyInput',  storage.resetKeyCode);
+    updateShortcutInputText('addSkipKeyInput',  storage.addSkipKeyCode);
     updateShortcutInputText('rewindKeyInput', storage.rewindKeyCode);
     updateShortcutInputText('advanceKeyInput', storage.advanceKeyCode);
     updateShortcutInputText('slowerKeyInput', storage.slowerKeyCode);

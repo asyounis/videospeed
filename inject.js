@@ -12,6 +12,7 @@ chrome.runtime.sendMessage({}, function(response) {
       fasterKeyCode: 68,    // default: D
       rewindKeyCode: 90,    // default: Z
       advanceKeyCode: 88,   // default: X
+      addSkipKeyCode: 65,   // default: A
       displayKeyCode: 86,   // default: V
       fastKeyCode: 71,      // default: G
       rememberSpeed: false, // default: false
@@ -39,6 +40,7 @@ chrome.runtime.sendMessage({}, function(response) {
     tc.settings.fastKeyCode = Number(storage.fastKeyCode);
     tc.settings.displayKeyCode = Number(storage.displayKeyCode);
     tc.settings.advanceKeyCode = Number(storage.advanceKeyCode);
+    tc.settings.addSkipKeyCode = Number(storage.addSkipKeyCode);
     tc.settings.rememberSpeed = Boolean(storage.rememberSpeed);
     tc.settings.startHidden = Boolean(storage.startHidden);
     tc.settings.blacklist = String(storage.blacklist);
@@ -257,6 +259,8 @@ chrome.runtime.sendMessage({}, function(response) {
           runAction('display', document, true)
         } else if (keyCode == tc.settings.fastKeyCode) {
           runAction('fast', document, true);
+        } else if (keyCode == tc.settings.addSkipKeyCode) {
+          runAction('addSkip', document, true);
         }
 
         return false;
@@ -351,6 +355,9 @@ chrome.runtime.sendMessage({}, function(response) {
           handleDrag(v, controller, e);
         } else if (action === 'fast') {
           resetSpeed(v, tc.settings.fastSpeed);
+        } else if (action === 'addSkip') {
+          var s = 15;
+          v.playbackRate = Number(s.toFixed(2));
         }
       }
     });
